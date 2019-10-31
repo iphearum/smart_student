@@ -1,6 +1,4 @@
 <?php
-
-use App\Http\Controllers\UniversityController;
 use Illuminate\Http\Request;
 
 /*
@@ -19,19 +17,20 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/university', 'UniversityController@all');
-Route::get('/university/{}', 'UniversityController@index');
-Route::get('/university/{}/major/{}', 'UniversityController@univerToMajor');
+Route::get('/university/{id}', 'UniversityController@index');
+Route::get('/university/{u_id}/major', 'UniversityController@univerToMajor');
 
 //major
 Route::get('/major', 'MajorController@all');
-Route::get('/major/{}', 'MajorController@index');
-Route::get('/major/{}/subject{}', 'MajorController@majorToSubject');
-Route::get('/major/{}/university', 'MajorController@majorToUniversity');
+Route::get('/major/{id}', 'MajorController@index');
+Route::get('/major/{m_id}/subject{s_id}', 'MajorController@majorToSubject');
+Route::get('/major/{m_id}/university', 'MajorController@majorToUniversity');
 
 //Subject
 Route::get('/subject','SubjectController@all');
-Route::get('/subject/{}','SubjectController@index');
-Route::get('/subject/{}/major','SubjectController@subjectToMajor');
-
+Route::get('/subject/{s_id}','SubjectController@index');
+Route::get('/subject/{s_id}/major','SubjectController@subjectToMajor');
+// type
+Route::get('/type_university/{input}','UniversityController@syncToType');
 // Route::get('/university/{itc}/major/{id_it}/subject/{id_subject}','UniversityController@majorHasSubject');//{uni}{major}{sub}
 // Route::put('/university/update/{}','UniversityController@index')->name('university.index');

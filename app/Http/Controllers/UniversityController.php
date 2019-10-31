@@ -32,6 +32,21 @@ class UniversityController extends Controller
         return $major;
     }
 
+    public function syncToType($input){
+        if ($input == "private"){
+            $univer = University::where('type','private');
+            $univer = "private";
+            return $univer;
+        }elseif($input == "public"){
+            $univer = University::where('type','public');
+            $univer = "public";
+            return $univer;
+        }
+        else{
+            return University::all();
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *

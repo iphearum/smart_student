@@ -32,7 +32,6 @@ Route::get('/', function () {
     //     'type_major'=>'engineer'
     // ]);
     $a = $univer->majors->where('name_major','GIC');
-    echo $a->id;
     // dd($univer);
     // $major = App\Major::findOrFail(1);
     // dd($major);
