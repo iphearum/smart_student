@@ -12,9 +12,9 @@ class Subject extends Model
         'majors_id'
     ];
     public function major(){
-        return $this->belongsTo(\App\Majors::class);
+        return $this->belongsTo(\App\Major::class);
     }
-    public function majors(){
-        return $this->belongsTo(\App\Majors::class);
-    }
+    // public function majors(){
+    //     return $this->belongsTo(\App\Majors::class);
+    // }
 }

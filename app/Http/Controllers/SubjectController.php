@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Major;
+use App\Subject;
 use Illuminate\Http\Request;
 
 class SubjectController extends Controller
@@ -11,9 +13,19 @@ class SubjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    public function all(){
+        $subject = Subject::all();
+        return $subject;
+    }
+    public function index($id)
     {
-        //
+        $subject = Subject::findOrFail($id);
+        return $subject;
+    }
+    public function subjectToMajor($m_id){
+        $subject = Major::findOrFial($m_id);
+        return $subject;
     }
 
     /**

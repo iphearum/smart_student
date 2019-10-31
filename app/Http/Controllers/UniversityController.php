@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Major;
+use App\University;
 use Illuminate\Http\Request;
 
 class UniversityController extends Controller
@@ -11,9 +13,23 @@ class UniversityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    public function all()
     {
-        //
+        $univer = University::all();
+        return $univer;
+    }
+
+    public function index($id)
+    {
+        $univer = University::findOrFail($id);
+        return $univer;
+    }
+    
+    public function univerToMajor($m_id)
+    {
+        $major = Major::findOrFail($m_id);
+        return $major;
     }
 
     /**

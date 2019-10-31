@@ -10,6 +10,7 @@ class Major extends Model
         'name_major',
         'description',
         'urlimage_major',
+        'type_major',
         'university_id'
     ];
     public function university(){

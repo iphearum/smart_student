@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Major;
+use App\Subject;
+use App\University;
 use Illuminate\Http\Request;
 
 class MajorController extends Controller
@@ -11,9 +14,25 @@ class MajorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function all(){
+        $major = Major::all();
+        return $major;
+    }
+
+    public function index($id)
     {
-        //
+        $major = Major::findOrFail($id);
+        return $major;
+    }
+
+    public function majorToSubject($m_id){
+        $major = Major::findOrFail($m_id);
+        return $major->subjects;
+    }
+
+    public function majorToUniversity($u_id){
+        $univer = University::findOrFail($u_id);
+        return $univer;
     }
 
     /**

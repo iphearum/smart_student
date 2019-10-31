@@ -18,6 +18,7 @@ class CreateMajorsTable extends Migration
             $table->string('name_major');
             $table->text('description');
             $table->string('urlimage_major');
+            $table->string('type_major');
             $table->unsignedBigInteger('university_id');
             $table->timestamps();
         });

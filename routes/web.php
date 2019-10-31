@@ -13,25 +13,36 @@
 
 Route::get('/', function () {
     // return view('welcome');
-    $univer = new \App\University([
-        "name_university"=>"ITC",
-        "description"=>'hello world',
-        "urlimage_logo"=>"logo_itc.jpg",
-        "urlimage_cover"=>"cover_itc.jpg",
-        "type"=>"public",
-    ]);
+    // $univer = new \App\University([
+    //     "name_university"=>"AEU",
+    //     "description"=>'hello world',
+    //     "urlimage_logo"=>"logo_AEU.jpg",
+    //     "urlimage_cover"=>"cover_AEU.jpg",
+    //     "type"=>"public",
+    // ]);
     // $univer->save();
-    // $univer = \App\University::first();
+    $univer = \App\University::first();
     
+
+    // major
     // $univer->majors()->create([
     //     'name_major'=>'GGG',
     //     'description'=>'do me',
     //     'urlimage_major'=>'image_GGG_major.jpg',
+    //     'type_major'=>'engineer'
     // ]);
-    $major = App\Major::findOrFail(1);
+    $a = $univer->majors->where('name_major','GIC');
+    echo $a->id;
+    // dd($univer);
+    // $major = App\Major::findOrFail(1);
     // dd($major);
-    $major->subjects()->create([
-        'name_subject'=>'gg',
-        'description'=>'DJ kaka',
-    ]);
+
+    // subject
+    // $major->subjects()->create([
+    //     'name_subject'=>'gg',
+    //     'description'=>'DJ kaka',
+    // ]);
+    // dd($univer->majors->where('id',1));
+    // dd($major->subjects);
+
 });
