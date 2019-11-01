@@ -27,8 +27,8 @@ Route::get('/', function () {
         $univer = new \App\University([
             "name_university" => $name_uni[$i],
             "description" => "I can only assume that PHP sorts the array as elements are added to make it easier for it to find a specified element by its key later. In many cases it won't matter if the array is not stored internally in the same order you added the elements, but if, for instance, you execute a foreach on the array later, the elements may not be processed in the order you need them to be.",
-            "urlimage_logo" => "logo_AEU.jpg",
-            "urlimage_cover" => "cover_AEU.jpg",
+            "urlimage_logo" => "logo_$name_uni[$i].jpg",
+            "urlimage_cover" => "cover_$name_uni[$i].jpg",
             "type" => "public",
         ]);
         $univer->save();
@@ -47,7 +47,7 @@ Route::get('/', function () {
             $univer->majors()->create([
                 'name_major' => $majors[$i],
                 'description' => "I can only assume that PHP sorts the array as elements are added to make it easier for it to find a specified element by its key later. In many cases it won't matter if the array is not stored internally in the same order you added the elements, but if, for instance, you execute a foreach on the array later, the elements may not be processed in the order you need them to be.",
-                'urlimage_major' => 'image_' . $majors[$i] . '_major.jpg',
+                'urlimage_major' => "image_$majors[$i]_major.jpg",
                 'type_major' => 'engineer'
             ]);
             $major = App\Major::findOrFail($i);
