@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Major;
-use App\Subject;
 use App\University;
 use Illuminate\Http\Request;
 

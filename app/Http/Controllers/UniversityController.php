@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Major;
 use App\University;
 use Illuminate\Http\Request;
-
+use App\Http\Resources\University as UniversityResource;
 class UniversityController extends Controller
 {
     /**
@@ -17,12 +17,13 @@ class UniversityController extends Controller
     public function all()
     {
         $univer = University::all();
-        return $univer;
+        return UniversityResource::collection($univer);
     }
-
+    
     public function index($id)
     {
         $univer = University::findOrFail($id);
+        return $this->univerToMajor($id);
         return $univer;
     }
     

@@ -1,6 +1,6 @@
 <?php
-use Illuminate\Http\Request;
 
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -27,10 +27,10 @@ Route::get('/major/{m_id}/subject{s_id}', 'MajorController@majorToSubject');
 Route::get('/major/{m_id}/university', 'MajorController@majorToUniversity');
 
 //Subject
-Route::get('/subject','SubjectController@all');
-Route::get('/subject/{s_id}','SubjectController@index');
-Route::get('/subject/{s_id}/major','SubjectController@subjectToMajor');
+Route::get('/subject', 'SubjectController@all');
+Route::get('/subject/{s_id}', 'SubjectController@index');
+Route::get('/subject/{s_id}/major', 'SubjectController@subjectToMajor');
 // type
-Route::get('/type_university/{input}','UniversityController@syncToType');
+Route::get('/type_university/{input}', 'UniversityController@syncToType');
 // Route::get('/university/{itc}/major/{id_it}/subject/{id_subject}','UniversityController@majorHasSubject');//{uni}{major}{sub}
 // Route::put('/university/update/{}','UniversityController@index')->name('university.index');
