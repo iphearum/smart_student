@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
 use App\Major;
 use App\University;
 use Illuminate\Http\Request;
-
+use App\Http\Controllers\Controller;
 class MajorController extends Controller
 {
     /**
@@ -30,18 +30,9 @@ class MajorController extends Controller
     }
 
     public function majorToUniversity($u_id){
-        $univer = University::findOrFail($u_id);
+        $major = Major::findOrFail($u_id);
+        $univer = University::findOrFail($major->university_id);
         return $univer;
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -52,41 +43,16 @@ class MajorController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+        $univer = $request->isMethod('put') ? Major::findOrFail($request->id) : new Major;
+        $univer->id = $request->input('id');
+        $univer->name_major = $request->input('name_major');
+        $univer->description = $request->input('description');
+        $univer->urlimage_major = $request->input('urlimage_major');
+        $univer->type_major = $request->input('type_major');
+        $univer->university_id = $request->input('university_id');
+        if($univer->save()) {
+            return new Major($univer);
+        }
     }
 
     /**
@@ -97,6 +63,7 @@ class MajorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $univer = Major::findOrFail($id);
+        $univer->delete();
     }
 }

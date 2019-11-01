@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
 use App\Major;
 use App\University;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Http\Resources\University as UniversityResource;
 class UniversityController extends Controller
 {
@@ -23,14 +24,14 @@ class UniversityController extends Controller
     public function index($id)
     {
         $univer = University::findOrFail($id);
-        return $this->univerToMajor($id);
+        // return $this->univerToMajor($id);
         return $univer;
     }
     
     public function univerToMajor($m_id)
     {
-        $major = Major::findOrFail($m_id);
-        return $major;
+        $univer = University::findOrFail($m_id);
+        return $univer->majors;
     }
 
     public function syncToType($input){
@@ -49,16 +50,6 @@ class UniversityController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -66,41 +57,17 @@ class UniversityController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $univer = $request->isMethod('put') ? University::findOrFail($request->id) : new University;
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+        $univer->id = $request->input('id');
+        $univer->name_university = $request->input('name_university');
+        $univer->description = $request->input('description');
+        $univer->urlimage_logo = $request->input('urlimage_logo');
+        $univer->urlimage_cover = $request->input('urlimage_cover');
+        $univer->type = $request->input('type');
+        if($univer->save()) {
+            return new UniversityResource($univer);
+        }
     }
 
     /**
@@ -111,6 +78,7 @@ class UniversityController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $univer = University::findOrFail($id);
+        $univer->delete();
     }
 }
