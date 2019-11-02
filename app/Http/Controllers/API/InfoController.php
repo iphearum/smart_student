@@ -16,7 +16,7 @@ class InfoController extends Controller
     {
         $info = Info::all();
         foreach($info as $do_info){
-            if ($do_info->university_id == $id){
+            if ($id == $do_info->university_id){
                 return $do_info;
             }
         }
