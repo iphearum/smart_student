@@ -13,7 +13,7 @@ class InfoUniversityTable extends Migration
      */
     public function up()
     {
-        Schema::create('info', function (Blueprint $table) {
+        Schema::create('infos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('websit');
             $table->string('phone_number');
@@ -22,7 +22,7 @@ class InfoUniversityTable extends Migration
             $table->string('direction');
             $table->string('city');
             $table->unsignedBigInteger('university_id');
-            $table->text('description');
+            $table->timestamps();
         });
     }
 

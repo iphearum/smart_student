@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 use App\Info;
 use App\University;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class InfoController extends Controller
 {
