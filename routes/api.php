@@ -45,8 +45,20 @@ Route::group([
     Route::get('/subject/{s_id}/major', 'SubjectController@subjectToMajor');
     // type
     Route::get('/type_university/{input}', 'UniversityController@syncToType');
+
+    // info university
+    Route::post('/info','InfoController@store');
+    Route::put('/info','InfoController@store');
+    Route::delete('/info/{id}','InfoController@destroy');
+    Route::get('/info/{u_id}', 'InfoController@index');
+
     // Route::get('/university/{itc}/major/{id_it}/subject/{id_subject}','UniversityController@majorHasSubject');//{uni}{major}{sub}
     // Route::put('/university/update/{}','UniversityController@index')->name('university.index');
-
-    // CRUD api
+        
+        // CRUD api
+    });
+Route::group([
+    'namespace'=>'Auth'
+],function(){
+    Route::get('/login','LoginController@api_login');
 });

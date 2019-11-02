@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Major;
+use App\User;
 use App\University;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -18,7 +19,9 @@ class UniversityController extends Controller
     public function all()
     {
         $univer = University::all();
-        return UniversityResource::collection($univer);
+        // return UniversityResource::collection($univer);
+        $univer = User::all();
+        return $univer;
     }
     
     public function index($id)

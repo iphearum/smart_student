@@ -15,7 +15,13 @@ class InfoUniversityTable extends Migration
     {
         Schema::create('info', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('unversities_id');
+            $table->string('websit');
+            $table->string('phone_number');
+            $table->string('university_email');
+            $table->string('street');
+            $table->string('direction');
+            $table->string('city');
+            $table->unsignedBigInteger('university_id');
             $table->text('description');
         });
     }
