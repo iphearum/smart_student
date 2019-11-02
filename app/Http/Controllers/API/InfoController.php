@@ -40,7 +40,18 @@ class InfoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $info = $request->isMethod('put') ? Info::findOrFail($request->id) : new Info;
+        $info->id = $request->input('id');
+        $info->websit = $request->input('websit');
+        $info->phone_number = $request->input('phone_number');
+        $info->university_email = $request->input('university_email');
+        $info->street = $request->input('street');
+        $info->direction = $request->input('direction');
+        $info->city = $request->input('city');
+        $info->university_id = $request->input('university_id');
+        if($info->save()) {
+            return new Info($info);
+        }
     }
 
     /**
