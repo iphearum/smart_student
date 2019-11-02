@@ -15,4 +15,7 @@ class Info extends Model
         'city',
         'university_id'
     ];
+    public function university(){
+        $this->belongsTo(\App\University::class);
+    }
 }
