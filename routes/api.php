@@ -18,12 +18,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group([
-    'namespace' => 'API'
+    'namespace' => 'API',
 ], function () {
-    Route::post('/university','UniversityController@store');
-    Route::put('/university','UniversityController@store');
-    Route::delete('/university/{id}','UniversityController@destroy');
-    Route::get('/university', 'UniversityController@all');
+    Route::post('/university','UniversityController@store'); //post
+    Route::put('/university','UniversityController@store'); //update
+    Route::delete('/university/{id}','UniversityController@destroy');//delete
+    Route::get('/university', 'UniversityController@all'); // view
+    
     Route::get('/university/{id}', 'UniversityController@index');
     Route::get('/university/{u_id}/major', 'UniversityController@univerToMajor');
 

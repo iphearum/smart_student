@@ -43,14 +43,17 @@ class LoginController extends Controller
     public function api_login(Request $request){
         // Request $request
         $user = User::all();
-        $hash_pass = Hash::make($request->input('password'));
         $request->isMethod('get');
         foreach($user as $data){
             $get_email = $data->email;
-            $get_pass = $data->password;
             if ($request->input('email') == $get_email){
-                // && $hash_pass == $get_pass
-                return $hash_pass;
+                $hash_pass = Hash::check($data->password,$request->input('password'));
+                if($hash_pass == true){
+                    return $data;
+                }else{
+                    return $hash_pass;
+                }
+                // && $request->input('password') == $hash_pass
             }
         }
         // return $request->input('password');

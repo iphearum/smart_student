@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+// use App\Http\Resources\University;
 use Illuminate\Http\Request;
-
+use App\University;
 class HomeController extends Controller
 {
     /**
@@ -23,6 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $university = University::all();
+        return view('welcome',compact('university'));
+        // return view('home');
     }
 }

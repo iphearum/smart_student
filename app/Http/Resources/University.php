@@ -18,6 +18,11 @@ class University extends JsonResource
             'id'=>$this->id,
             'name_university'=>$this->name_university,
             'description'=>$this->description,
+            'major'=>[
+                'name_major'=>$this->name_major,
+                'urlimage_major'=>$this->urlimage_major,
+                'type_major'=>$this->type_major,
+            ]
             // 'major'=> new MajorResource($this->id)
         ];
     }

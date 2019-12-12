@@ -12,10 +12,10 @@ use Faker\Generator as Faker;
 */
 
 Route::get('/', function () {
-    $univer = \App\University::findOrFail(4);
+    // $univer = \App\University::findOrFail(4);
     // $major = App\Major::find('university_id',4);
     // dd($major);
-    echo $univer->id;
+    // echo $univer->id;
 
     // university
     // $name_uni = [
@@ -99,6 +99,6 @@ Route::get('/', function () {
     // dd($univer);
 });
 
-Auth::routes();
+// Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/', 'HomeController@index')->name('home');

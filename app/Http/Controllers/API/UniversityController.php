@@ -7,6 +7,7 @@ use App\User;
 use App\University;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use App\Http\Resources\University as UniversityResource;
 class UniversityController extends Controller
 {
@@ -18,10 +19,15 @@ class UniversityController extends Controller
 
     public function all()
     {
-        $univer = University::all();
-        // return UniversityResource::collection($univer);
-        $univer = User::all();
-        return $univer;
+        // $univer = University::all();
+        // $user = User::all();
+        // $univer->append($user);
+        $univer = DB::table('universities')
+        ->join('majors','majors.university_id','universities.id')
+        ->select('majors.*','universities.name_university','universities.description')
+        ->get();
+        return UniversityResource::collection($univer);
+        // return $univer;
     }
     
     public function index($id)
